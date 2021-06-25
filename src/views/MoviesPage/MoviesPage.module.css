@@ -1,0 +1,5 @@
+.liItem:hover {
+    cursor: pointer;
+    color: tomato;
+}
+

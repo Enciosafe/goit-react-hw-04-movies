@@ -1,0 +1,29 @@
+.headerContainer {
+    display: flex;
+    justify-content: start;
+    border-bottom: 1px solid black;
+    padding: 10px;
+}
+
+.item {
+    margin-left: 10px;
+}
+
+.active {
+    margin-left: 10px;
+    color: tomato;
+}
+
+.item:hover {
+    cursor: pointer;
+}
+
+
+li {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+    color: currentColor;
+}

@@ -1,0 +1,43 @@
+.movieContainer{
+    border-bottom: solid 1px black;
+}
+
+.info {
+    margin: 10px;
+    border-bottom: solid 1px black;
+}
+
+.container {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    color: currentColor;
+    font-family: Herculanum;
+}
+
+.title:hover {
+    color: tomato;
+}
+
+.containerItem {
+    margin: 10px;
+}
+
+.img {
+    width: 400px;
+    border: solid 1px tomato
+}
+
+.active {
+    color: tomato;
+    border-bottom: solid 1px black
+}
+
+.item:hover {
+    cursor: pointer;
+}
