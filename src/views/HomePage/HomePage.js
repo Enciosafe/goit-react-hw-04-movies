@@ -18,15 +18,15 @@ export default class HomePage extends Component  {
         getData()
     }
 
+
     render () {
         const { trendingMovies } = this.state
-        console.log()
         return  <>
             <h2>Trending Today</h2>
             <ul>
-                {trendingMovies.map(movie =>
-                    <li key={movie.id} className={s.liItem}>
-                        <Link to={`/movie/${movie.id}`}>{movie.title}</Link>
+                {trendingMovies.map(({id, title}) =>
+                    <li key={id} className={s.liItem}>
+                        <Link to={`/movie/${id}`}>{title}</Link>
                     </li>)}
             </ul>
 

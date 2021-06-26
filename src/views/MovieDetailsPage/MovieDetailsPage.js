@@ -1,18 +1,21 @@
-import React, {Component} from "react";
+import React, {Component, Suspense, lazy} from "react";
 import {getMovieById, IMG_PATH} from "../../services/movieAPI";
 import {NavLink, Route, Switch} from "react-router-dom";
 import s from "./MovieDetailsPage.module.css"
-import Cast from "../../components/Cast/Cast";
-import Reviews from "../../components/Reviews/Reviews";
+// import Cast from "../../components/Cast/Cast";
+// import Reviews from "../../components/Reviews/Reviews";
+import routes from "../../routes"
 
 
-
+const NO_IMG ='https://www.sion-consulting.com/wp-content/themes/consultix/images/no-image-found-360x250.png';
+const CastView = lazy(() => import('../../components/Cast/Cast' /* webpackChunkName: 'cast-page' */));
+const ReviewsView = lazy(() => import('../../components/Reviews/Reviews' /* webpackChunkName: 'reviews-page' */));
 
 export default class MovieDetailsPage extends Component {
 
     state = {
         title: null,
-        backdrop_path: '',
+        backdrop_path: null,
         popularity: null,
         overview: null,
         genres: [],
@@ -39,7 +42,10 @@ export default class MovieDetailsPage extends Component {
                 <h1 className={s.title}>{title} ({release_date})</h1>
                 <div className={s.container}>
                     <div className={s.containerItem}>
-                        <img className={s.img} src={`${IMG_PATH}${backdrop_path}`} alt=""/>
+                        <img className={s.img} src={backdrop_path
+                            ?`${IMG_PATH}${backdrop_path}`
+                            :NO_IMG}
+                             alt=""/>
                     </div>
                     <div className={s.containerItem}>
                         <span>💊Users Score: ({popularity})</span>
@@ -65,10 +71,12 @@ export default class MovieDetailsPage extends Component {
                             🚽Reviews</NavLink></li>
                     </ul>
                 </div>
-            <Switch>
-                <Route exact path="/movie/:movieId/cast" component={Cast} />
-                <Route exact path="/movie/:movieId/reviews" component={Reviews} />
-            </Switch>
+            <Suspense fallback={<h1>Loading...</h1>}>
+                <Switch>
+                    <Route exact path={routes.cast} component={CastView} />
+                    <Route exact path={routes.reviews}component={ReviewsView} />
+                </Switch>
+            </Suspense>
         </>
     }
 }
